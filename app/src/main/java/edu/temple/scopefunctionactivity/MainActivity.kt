@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import kotlin.random.Random
 
@@ -16,6 +18,30 @@ class MainActivity : AppCompatActivity() {
         // You can test your helper functions by  calling them from onCreate() and
         // printing their output to the Log, which is visible in the LogCat:
         // eg. Log.d("function output", getTestDataArray().toString())
+
+        val testArray = getTestDataArray()
+        Log.d("testArray", testArray.toString())
+
+        Log.d("averageLessThanMedian", averageLessThanMedian(testArray as List<Double>).toString())
+
+        val root = findViewById<LinearLayout>(R.id.root)
+
+        val data = listOf(1, 2, 3, 4)
+
+        var idx = 0
+
+        val v0 = getView(idx, null, data, this)
+        root.addView(v0)
+
+        findViewById<Button>(R.id.button).setOnClickListener {
+            idx += 1
+            if(idx >= data.size){
+                idx = 0
+            }
+            getView(idx, v0, data, this)
+        }
+
+
 
     }
 
